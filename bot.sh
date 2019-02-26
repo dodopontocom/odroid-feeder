@@ -24,19 +24,24 @@ ShellBot.init --token "$bot_token" --monitor --flush
 
 ShellBot.username
 servo_function () {
-	msg="*Pet alimentado com sucesso...*"
-	ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
+	if [[ $(cat ${BASEDIR}/.allowed_id | grep "${callback_query_message_chat_id[$id]}") ]]; then
+		msg="*Pet alimentado com sucesso...*"
+		ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
 					--text "*alimentando seu pet...*"
 
-	servo.sh && sleep 3 && servo.sh && sleep 3 && servo.sh
-	# Envia mensagem
-	ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
+		servo.sh && sleep 3 && servo.sh && sleep 3 && servo.sh
+		# Envia mensagem
+		ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
 							--text "$(echo -e $msg)" \
 							--parse_mode markdown
 
-	#descomentar linha abaixo quando estiver funcionando o feeder ja com ração para enviar foto do pote com ração
-	#snap
-	
+		#descomentar linha abaixo quando estiver funcionando o feeder ja com ração para enviar foto do pote com ração
+		#snap
+	else
+		ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
+			--text "sorry, você não tem autorização para essa operação..."
+	fi
+
 	return 0
 }
 
