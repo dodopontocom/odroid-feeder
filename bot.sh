@@ -14,6 +14,8 @@ echo ${BASEDIR}
 source ${BASEDIR}/ShellBot.sh
 source ${BASEDIR}/motion.sh
 
+logs=${BASEDIR}/logs
+
 # Token do bot
 bot_token=$(cat ${BASEDIR}/.token)
 
@@ -32,7 +34,7 @@ servo_function () {
 							--text "$(echo -e $msg)" \
 							--parse_mode markdown
 
-	#decomentar linha abaixo quando estiver funcionando o feeder ja com ração para enviar foto do pote com ração
+	#descomentar linha abaixo quando estiver funcionando o feeder ja com ração para enviar foto do pote com ração
 	#snap
 	
 	return 0
@@ -103,7 +105,10 @@ do
 		case ${message_text[$id]} in
 			"/hello")	# bot comando
 				# Envia a mensagem anexando o teclado "$keyboard1"
-				ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text '*Pois não...*' \
+				if [[ ! -d ${logs}/${message_chat_id[$id]}_${message_from_first_name} ]]; then
+					mkdir ${logs}/${message_chat_id[$id]}_${message_from_first_name}
+				fi	
+				ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "*Pois não ${message_from_first_name} ...*" \
 							--reply_markup "$keyboard1" \																		--parse_mode markdown
 			;;
 		esac
