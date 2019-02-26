@@ -57,6 +57,7 @@ motion_function () {
 		ShellBot.sendPhoto --chat_id ${callback_query_message_chat_id[$id]} --photo @$file \
 								--caption "*meu pote está meio vazio ou meio cheio?...*"
 	fi
+	mv -v $file ${logs}/${callback_query_message_chat_id[$id]}_${callback_query_message_chat_first_name}/
 	return 0
 }
 
