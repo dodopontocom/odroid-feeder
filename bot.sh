@@ -28,15 +28,23 @@ servo_function () {
 		msg="*Pet alimentado com sucesso...*"
 		ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
 					--text "*alimentando seu pet...*"
-
-		servo.sh && sleep 3 && servo.sh && sleep 3 && servo.sh
+		snap 1
+		sleep 3
+		servo.sh && sleep 1.8 && servo.sh && sleep 1.8 && servo.sh
+		sleep 3 
+		file=$(find /tmp/ -iname "*.jpg" 2>/dev/null | sort -n | tail -1)
+		echo $file
 		# Envia mensagem
 		ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
 							--text "$(echo -e $msg)" \
 							--parse_mode markdown
+		ShellBot.sendPhoto --chat_id ${callback_query_message_chat_id[$id]} --photo @$file \
+								--caption "*confira...*"
 
 		#descomentar linha abaixo quando estiver funcionando o feeder ja com ração para enviar foto do pote com ração
 		#snap
+		cat /home/odroid/motion.pid
+		kill -9 $(cat /home/odroid/motion.pid)
 	else
 		ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
 			--text "sorry, você não tem autorização para essa operação..."
@@ -49,7 +57,7 @@ ShellBot.username
 motion_function () {
 	stamp=$(date +%Y%m%d%H%M)
 	snap
-	file=$(find /tmp/ -iname "*$stamp*snapshot.jpg" 2>/dev/null | tail -1)
+	file=$(find /tmp/ -iname "*$stamp*snapshot.jpg" 2>/dev/null | sort -n | tail -1)
 	if [[ -z $file ]]; then
 		msg="*Ops, algo de errado não deu certo...*\n"
 		ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
