@@ -32,7 +32,7 @@ servo_function () {
 		sleep 3
 		servo.sh && sleep 1.8 && servo.sh && sleep 1.8 && servo.sh
 		sleep 3 
-		file=$(find /tmp/ -iname "*.jpg" 2>/dev/null | sort -n | tail -1)
+		file=$(find /tmp/ -iname "*20*.jpg" 2>/dev/null | sort -n | tail -1)
 		echo $file
 		# Envia mensagem
 		ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
