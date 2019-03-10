@@ -30,7 +30,8 @@ servo_function () {
 					--text "*alimentando seu pet...*"
 		snap 1
 		sleep 3
-		servo.sh && sleep 1.8 && servo.sh && sleep 1.8 && servo.sh
+		servo.sh && sleep 1.8
+		#servo.sh && sleep 1.8 && servo.sh
 		sleep 3 
 		file=$(find /tmp/ -iname "*20*.jpg" 2>/dev/null | sort -n | tail -1)
 		echo $file
