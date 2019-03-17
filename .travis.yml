@@ -1,0 +1,8 @@
+language: generic
+
+script:
+ - bash ./bot/bot.sh
+
+branches:
+  only:
+    - feature/refactoring-folders
