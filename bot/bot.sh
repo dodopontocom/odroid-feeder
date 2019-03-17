@@ -14,10 +14,10 @@ echo ${BASEDIR}
 source ${BASEDIR}/ShellBot.sh
 source ${BASEDIR}/motion.sh
 
-logs=${BASEDIR}/logs
+logs=${BASEDIR}/../logs
 
 # Token do bot
-bot_token=$(cat ${BASEDIR}/.token)
+bot_token=$(cat ${BASEDIR}/../.token)
 
 # Inicializando o bot
 ShellBot.init --token "$bot_token" --monitor --flush
