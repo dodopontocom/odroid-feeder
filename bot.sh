@@ -14,6 +14,8 @@ echo ${BASEDIR}
 source ${BASEDIR}/ShellBot.sh
 source ${BASEDIR}/motion.sh
 
+logs=${BASEDIR}/logs
+
 # Token do bot
 bot_token=$(cat ${BASEDIR}/.token)
 
@@ -22,19 +24,33 @@ ShellBot.init --token "$bot_token" --monitor --flush
 
 ShellBot.username
 servo_function () {
-	msg="*Pet alimentado com sucesso...*"
-	ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
+	if [[ $(cat ${BASEDIR}/.allowed_id | grep "${callback_query_message_chat_id[$id]}") ]]; then
+		msg="*Pet alimentado com sucesso...*"
+		ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
 					--text "*alimentando seu pet...*"
-
-	servo.sh && sleep 3 && servo.sh && sleep 3 && servo.sh
-	# Envia mensagem
-	ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
+		snap 1
+		sleep 3
+		servo.sh && sleep 1.8
+		#servo.sh && sleep 1.8 && servo.sh
+		sleep 3 
+		file=$(find /tmp/ -iname "*20*.jpg" 2>/dev/null | sort -n | tail -1)
+		echo $file
+		# Envia mensagem
+		ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
 							--text "$(echo -e $msg)" \
 							--parse_mode markdown
+		ShellBot.sendPhoto --chat_id ${callback_query_message_chat_id[$id]} --photo @$file \
+								--caption "*confira...*"
 
-	#decomentar linha abaixo quando estiver funcionando o feeder ja com ração para enviar foto do pote com ração
-	#snap
-	
+		#descomentar linha abaixo quando estiver funcionando o feeder ja com ração para enviar foto do pote com ração
+		#snap
+		cat /home/odroid/motion.pid
+		kill -9 $(cat /home/odroid/motion.pid)
+	else
+		ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
+			--text "sorry, você não tem autorização para essa operação..."
+	fi
+
 	return 0
 }
 
@@ -42,7 +58,7 @@ ShellBot.username
 motion_function () {
 	stamp=$(date +%Y%m%d%H%M)
 	snap
-	file=$(find /tmp/ -iname "*$stamp*snapshot.jpg" 2>/dev/null | tail -1)
+	file=$(find /tmp/ -iname "*$stamp*snapshot.jpg" 2>/dev/null | sort -n | tail -1)
 	if [[ -z $file ]]; then
 		msg="*Ops, algo de errado não deu certo...*\n"
 		ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
@@ -55,6 +71,7 @@ motion_function () {
 		ShellBot.sendPhoto --chat_id ${callback_query_message_chat_id[$id]} --photo @$file \
 								--caption "*meu pote está meio vazio ou meio cheio?...*"
 	fi
+	mv -v $file ${logs}/${callback_query_message_chat_id[$id]}_${callback_query_message_chat_first_name}/
 	return 0
 }
 
@@ -103,7 +120,10 @@ do
 		case ${message_text[$id]} in
 			"/hello")	# bot comando
 				# Envia a mensagem anexando o teclado "$keyboard1"
-				ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text '*Pois não...*' \
+				if [[ ! -d ${logs}/${message_chat_id[$id]}_${message_from_first_name} ]]; then
+					mkdir ${logs}/${message_chat_id[$id]}_${message_from_first_name}
+				fi	
+				ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "*Pois não ${message_from_first_name} ...*" \
 							--reply_markup "$keyboard1" \																		--parse_mode markdown
 			;;
 		esac
