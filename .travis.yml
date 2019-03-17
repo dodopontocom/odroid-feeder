@@ -1,9 +1,10 @@
 language: generic
 #
 script:
- - bash ./bot/bot.sh $BT_TOKEN
- #https://api.telegram.org/bot$BT_TOKEN/getUpdates
-
+ - curl -X POST \
+       -H 'Content-Type: application/json' \
+       -d '{"chat_id": "${TEST_MESSAGE_ID}", "text": "${TRAVIS_COMMIT_MESSAGE}", "disable_notification": true}' \
+       https://api.telegram.org/bot$TB_TOKEN/sendMessage
 branches:
   only:
     - feature/refactoring-folders
