@@ -1,7 +1,8 @@
 language: generic
 #
 script:
- - bash ./bot/bot.sh
+ - bash ./bot/bot.sh $BT_TOKEN
+ #https://api.telegram.org/bot$BT_TOKEN/getUpdates
 
 branches:
   only:
