@@ -17,7 +17,11 @@ source ${BASEDIR}/motion.sh
 logs=${BASEDIR}/../logs
 
 # Token do bot
-bot_token=$(cat ${BASEDIR}/../.token)
+if [[ ! -z $1 ]]; then
+	bot_token=$1
+else
+	bot_token=$(cat ${BASEDIR}/../.token)
+fi
 
 # Inicializando o bot
 ShellBot.init --token "$bot_token" --monitor --flush
