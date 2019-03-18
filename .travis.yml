@@ -2,9 +2,10 @@ language: generic
 #
 script:
  - |
-       curl -X POST \
-       -H 'Content-Type: application/json' \
-       -d '{"chat_id": "${TEST_MESSAGE_ID}", "text": "${TRAVIS_COMMIT_MESSAGE}", "disable_notification": true}' \
+       curl -s \
+       -X POST \
+       -d chat_id=$TEST_MESSAGE_ID \
+       -d text=$TRAVIS_COMMIT_MESSAGE \
        https://api.telegram.org/bot$TB_TOKEN/sendMessage
 branches:
   only:
