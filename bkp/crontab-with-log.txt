@@ -1,0 +1,4 @@
+ts
+dependency: moreutils
+apt-get install -y moreutils
+0 0 * * * root bash /apps/docker-cleanup/devops-cleanup.sh 2>&1 | ts "[\%Y-\%m-\%d \%H:\%M:\%S]" >> /apps/docker-cleanup/logs/crontab.log 2>&1
