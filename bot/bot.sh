@@ -12,7 +12,7 @@ sleep 10
 BASEDIR=$(dirname $0)
 echo ${BASEDIR}
 source ${BASEDIR}/ShellBot.sh
-source ${BASEDIR}/motion.sh
+source ${BASEDIR}/functions/motion.sh
 
 logs=${BASEDIR}/../logs
 
