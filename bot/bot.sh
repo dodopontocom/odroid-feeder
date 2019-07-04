@@ -42,14 +42,32 @@ servo.function () {
 	fi
 	return 0
 }
+servo2.function () {
+	if [[ $(cat ${BASEDIR}/.allowed_id | grep "${callback_query_message_chat_id[$id]}") ]]; then
+		msg="*Pet alimentado com sucesso...*"
+		ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
+					--text "*Colocando água...*"
+		servo2.sh
+		sleep 3
+		selfie.shot
+	else
+		ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
+			--text "sorry, você não tem autorização para essa operação..."
+	fi
+	return 0
+}
 
 # Limpa o array que irá receber a estrutura inline_button e suas configurações.
 botao1=''
 
-ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text 'Alimentar' --callback_data 'btn_feed'		# linha 1
-ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text 'Verificar' --callback_data 'btn_foto'		# linha 2
+ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text 'Alimentar' --callback_data 'btn_feed'
+ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text 'Água 500ml +' --callback_data 'btn_water'
+ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text 'Alimentar +' --callback_data 'btn_feed'
+ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text 'Água + 250ml' --callback_data 'btn_water'
+ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text 'Verificar Potes' --callback_data 'btn_foto'
 
 ShellBot.regHandleFunction --function servo.function --callback_data btn_feed
+ShellBot.regHandleFunction --function servo2.function --callback_data btn_water
 ShellBot.regHandleFunction --function selfie.shot --callback_data btn_foto
 
 keyboard1="$(ShellBot.InlineKeyboardMarkup -b 'botao1')"
