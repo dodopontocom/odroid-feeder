@@ -2,7 +2,7 @@
 #
 start.sendGreetings() {
   local message txt
-  txt=${BASEDIR}/texts/start.txt
+  txt=${BASEDIR}/../texts/start.txt
   message="*olá *"
   if [[ ! -z $message_from_first_name ]]; then
     message+=${message_from_first_name}
