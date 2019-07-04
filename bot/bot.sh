@@ -64,7 +64,7 @@ ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text "Alimentar 300g"
 ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text "Água 500ml +" --callback_data 'btn_water'
 ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text "Alimentar 200g" --callback_data 'btn_feed'
 ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text "Água 250ml" --callback_data 'btn_water'
-ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text "Verificar Potes" --callback_data 'btn_foto'
+ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text "Verificar Potes 📷" --callback_data 'btn_foto'
 
 ShellBot.regHandleFunction --function servo.function --callback_data btn_feed
 ShellBot.regHandleFunction --function servo2.function --callback_data btn_water
