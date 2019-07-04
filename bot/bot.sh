@@ -61,9 +61,9 @@ servo2.function () {
 botao1=''
 
 ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text 'Alimentar' --callback_data 'btn_feed'
-ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text 'Água 500ml +' --callback_data 'btn_water'
-ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text 'Alimentar +' --callback_data 'btn_feed'
-ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text 'Água + 250ml' --callback_data 'btn_water'
+ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text 'Água 500ml \+' --callback_data 'btn_water'
+ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text 'Alimentar \+ \+' --callback_data 'btn_feed'
+ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text 'Água \+ 250ml' --callback_data 'btn_water'
 ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text 'Verificar Potes' --callback_data 'btn_foto'
 
 ShellBot.regHandleFunction --function servo.function --callback_data btn_feed
