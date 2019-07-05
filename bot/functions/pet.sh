@@ -57,9 +57,13 @@ pet.animal() {
     echo "acao:miaowW" >> $pets_info
   fi
   
-  echo "$sucess_msg" >> $user_log/$(date +%Y%m%d).log
+  message="Como gosta de ser chamado pelo seu pet?"
+  ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})"
   
-  sucess_msg="$(date +%H:%M:%S) - cadastro realizado com sucesso"
+  message="Dono:"
+  ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})" \
+        --reply_markup "$(ShellBot.ForceReply)"
+  
   echo "$sucess_msg" >> $user_log/$(date +%Y%m%d).log
 }
 
