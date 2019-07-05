@@ -12,7 +12,8 @@ source ${BASEDIR}/functions/start.sh
 
 logs=${BASEDIR}/../logs
 id_check=${BASEDIR}/.id_registrados
-pets_name=$(tail -1 ${BASEDIR}/.pets_name)
+pets_name=$(tail -1 ${BASEDIR}/.pets_name | cut -d':' -f1)
+pets_action=$(tail -1 ${BASEDIR}/.pets_name | cut -d':' -f2)
 
 # Token do bot
 if [[ ! -z $1 ]]; then
@@ -89,7 +90,7 @@ do
 				if [[ ! -d ${logs}/${message_chat_id[$id]}_${message_from_first_name} ]]; then
 					mkdir -p ${logs}/${message_chat_id[$id]}_${message_from_first_name}
 				fi	
-				ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "*Pois não ${message_from_first_name} ...*" \
+				ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "*${pets_action} ... Estou com fome ${message_from_first_name} ...*" \
 							--reply_markup "$keyboard1" \																		--parse_mode markdown
 			;;
 			"/start")
