@@ -35,7 +35,7 @@ pet.nome() {
 }
 
 pet.animal() {
-  local animal sucess_msg
+  local animal sucess_msg message
   animal=$1
   sucess_msg="$(date +%H:%M:%S) - $animal cadastrado"
   
@@ -45,5 +45,10 @@ pet.animal() {
   
   echo "$sucess_msg" >> $user_log/$(date +%Y%m%d).log
   echo "animal:$animal" >> $pets_info
+  
+  message="Animal:"
+  ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})" \
+        --reply_markup "$(ShellBot.ForceReply)"
+
 }
 
