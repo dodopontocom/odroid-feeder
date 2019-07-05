@@ -91,7 +91,7 @@ do
 				if [[ ! -d $user_log ]]; then					
 					mkdir -p $user_log
 				fi
-				echo "$(date +%H:%M:%S) - comando /${pets_name} envocado" >> $user_log/$(date +%Y%m%d).log
+				echo "$(date +%H:%M:%S) - comando /${pets_name} executado" >> $user_log/$(date +%Y%m%d).log
 				ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "*${pets_action} ... Estou com fome ${message_from_first_name} ...*" \
 							--reply_markup "$keyboard1" \																		--parse_mode markdown
 			;;
