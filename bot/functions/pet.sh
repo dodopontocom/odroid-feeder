@@ -31,7 +31,7 @@ pet.nome() {
   pets_info=${user_log}/pets_info.txt
   
   message="É um dog ou um gato?"
-  ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})" \
+  ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})"
   
   message="Animal:"
   ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})" \
@@ -49,17 +49,25 @@ pet.animal() {
   user_id=${message_chat_id[$id]}  
   user_log=${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}
   pets_info=${user_log}/pets_info.txt
-  
-  echo "$sucess_msg" >> $user_log/$(date +%Y%m%d).log
-  
-  sucess_msg="$(date +%H:%M:%S) - cadastro realizado com sucesso"
-  echo "$sucess_msg" >> $user_log/$(date +%Y%m%d).log
-  
+    
   echo "animal:$animal" >> $pets_info
   if [[ $animal =~ ([Dd]og|[Cc]achorro|[Cc]adela|[Cc]achorra) ]]; then
     echo "acao:auau" >> $pets_info
   elif [[ $animal =~ ([Gg]ato|[Gg]ata|[Cc]at|[Cc]achorra) ]]; then
     echo "acao:miaowW" >> $pets_info
   fi
+  
+  echo "$sucess_msg" >> $user_log/$(date +%Y%m%d).log
+  
+  sucess_msg="$(date +%H:%M:%S) - cadastro realizado com sucesso"
+  echo "$sucess_msg" >> $user_log/$(date +%Y%m%d).log
+  
+  message="Cadastro realizado com sucesso"
+  ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})"
+  
+  message="O comando para me chamar é /$(cat $pets_info | grep ^nome | cut -d':' -f2 | cut -d' ' -f1 | tr '[:upper:]' '[:lo
+wer:]')"
+  ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})"
+  
 }
 
