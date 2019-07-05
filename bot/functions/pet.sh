@@ -61,12 +61,28 @@ pet.animal() {
   
   sucess_msg="$(date +%H:%M:%S) - cadastro realizado com sucesso"
   echo "$sucess_msg" >> $user_log/$(date +%Y%m%d).log
+}
+
+pet.dono() {
+  local dono sucess_msg acao
+  dono=$1
+  sucess_msg="$(date +%H:%M:%S) - $dono cadastrado"
+  
+  user_id=${message_chat_id[$id]}  
+  user_log=${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}
+  pets_info=${user_log}/pets_info.txt
+    
+  echo "dono:$dono" >> $pets_info
+  
+  echo "$sucess_msg" >> $user_log/$(date +%Y%m%d).log
+  
+  sucess_msg="$(date +%H:%M:%S) - cadastro realizado com sucesso"
+  echo "$sucess_msg" >> $user_log/$(date +%Y%m%d).log
   
   message="Cadastro realizado com sucesso"
   ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})"
   
   message="O comando para me chamar é /$(cat $pets_info | grep ^nome | tail -1 | cut -d':' -f2 | cut -d' ' -f1 | tr '[:upper:]' '[:lower:]')"
   ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})"
-  
 }
 
