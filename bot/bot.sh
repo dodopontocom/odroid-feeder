@@ -96,7 +96,16 @@ do
 				fi
 			;;
 		esac
-	) & # Utilize a thread se deseja que o bot responda a várias requisições simultâneas.
+		if [[ ${message_reply_to_message_message_id[$id]} ]]; then
+			case ${message_reply_to_message_text[$id]} in
+				'Nome:')
+					pet.nome "${message_text[$id]}"
+				;;
+				'Animal:')
+					pet.animal "${message_text[$id]}"
+			esac
+		fi
+	) &
 	done
 done
 #FIM
