@@ -107,8 +107,10 @@ do
 				;;
 				'Animal:')
 					pet.animal "${message_text[$id]}"
+				;;
 				'Dono:')
 					pet.dono "${message_text[$id]}"
+				;;
 			esac
 		fi
 	) &
