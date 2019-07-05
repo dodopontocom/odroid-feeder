@@ -26,33 +26,6 @@ ShellBot.init --token "$bot_token" --monitor --flush
 
 ShellBot.username
 
-servo.function () {
-	if [[ $(cat $id_check | grep "${callback_query_message_chat_id[$id]}") ]]; then
-		ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
-					--text "Alimentando seu pet..."
-		servo.sh
-		sleep 3
-		selfie.shot
-	else
-		ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
-			--text "Desculpe, você não tem autorização para essa operação..."
-	fi
-	return 0
-}
-servo2.function () {
-	if [[ $(cat $id_check | grep "${callback_query_message_chat_id[$id]}") ]]; then
-		ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
-					--text "Colocando água..."
-		servo2.sh
-		sleep 3
-		selfie.shot
-	else
-		ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
-			--text "Desculpe, você não tem autorização para essa operação..."
-	fi
-	return 0
-}
-
 # Limpa o array que irá receber a estrutura inline_button e suas configurações.
 botao1=''
 
@@ -63,10 +36,10 @@ ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text 'Água 250ml' --
 ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text 'Verificar Potes 📷' --callback_data 'btn_foto'
 ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text 'Ajuda ⁉️' --callback_data 'btn_ajuda'
 
-ShellBot.regHandleFunction --function servo.function --callback_data btn_feed1
-ShellBot.regHandleFunction --function servo.function --callback_data btn_feed2
-ShellBot.regHandleFunction --function servo2.function --callback_data btn_water1
-ShellBot.regHandleFunction --function servo2.function --callback_data btn_water2
+ShellBot.regHandleFunction --function servo.food --callback_data btn_feed1
+ShellBot.regHandleFunction --function servo.food --callback_data btn_feed2
+ShellBot.regHandleFunction --function servo.water --callback_data btn_water1
+ShellBot.regHandleFunction --function servo.water --callback_data btn_water2
 ShellBot.regHandleFunction --function selfie.shot --callback_data btn_foto
 ShellBot.regHandleFunction --function start.sendGreetings --callback_data btn_ajuda
 
