@@ -12,6 +12,7 @@ source ${BASEDIR}/functions/start.sh
 
 logs=${BASEDIR}/../logs
 id_check=${BASEDIR}/.id_registrados
+pets_name=$(tail -1 ${BASEDIR}/.pets_name)
 
 # Token do bot
 if [[ ! -z $1 ]]; then
@@ -84,7 +85,7 @@ do
 		ShellBot.watchHandle --callback_data ${callback_query_data[$id]}
 		# Verifica se a mensagem enviada pelo usuário é um comando válido.
 		case ${message_text[$id]} in
-			"/hello")
+			"/${pets_name}")
 				if [[ ! -d ${logs}/${message_chat_id[$id]}_${message_from_first_name} ]]; then
 					mkdir -p ${logs}/${message_chat_id[$id]}_${message_from_first_name}
 				fi	
