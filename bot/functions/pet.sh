@@ -15,9 +15,9 @@ pet.register() {
   message="Qual o nome do seu pet?"
   ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})" \
         --parse_mode markdown
-  message="*Nome:*"
-  ShellBot.ForceReply --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})" \
-        --parse_mode markdown
+  message="Nome:"
+  ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})" \
+        --reply_markup "$(ShellBot.ForceReply)"
 
   echo $sucess_msg >> $user_log/$(date +%Y%m%d).log
 }
