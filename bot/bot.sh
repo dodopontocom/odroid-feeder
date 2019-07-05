@@ -9,6 +9,7 @@ echo ${BASEDIR}
 source ${BASEDIR}/ShellBot.sh
 source ${BASEDIR}/functions/selfie.sh
 source ${BASEDIR}/functions/start.sh
+source ${BASEDIR}/functions/feed.sh
 
 logs=${BASEDIR}/../logs
 id_check=${BASEDIR}/.id_registrados
@@ -87,13 +88,15 @@ do
 		# Verifica se a mensagem enviada pelo usuário é um comando válido.
 		case ${message_text[$id]} in
 			"/${pets_name}")
-				user_log=${logs}/${message_chat_id[$id]}_${message_from_first_name}
-				if [[ ! -d $user_log ]]; then					
-					mkdir -p $user_log
-				fi
-				echo "$(date +%H:%M:%S) - comando /${pets_name} executado" >> $user_log/$(date +%Y%m%d).log
-				ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "*${pets_action} ... Estou com fome ${message_from_first_name} ...*" \
-							--reply_markup "$keyboard1" \																		--parse_mode markdown
+				feed.init "${keyboard1}"
+				#user_log=${logs}/${message_chat_id[$id]}_${message_from_first_name}
+				#if [[ ! -d $user_log ]]; then					
+				#	mkdir -p $user_log
+				#fi
+				#echo "$(date +%H:%M:%S) - comando /${pets_name} executado" >> $user_log/$(date +%Y%m%d).log
+				#ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "*${pets_action} ... Estou com fome ${message_from_first_name} ...*" \
+				#			--reply_markup "$keyboard1" \
+				#			--parse_mode markdown
 			;;
 			"/start")
 				start.sendGreetings "${message_from_first_name}"
