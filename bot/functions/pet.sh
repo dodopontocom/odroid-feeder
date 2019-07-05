@@ -24,7 +24,7 @@ pet.register() {
 pet.nome() {
   local nome sucess_msg message
   nome=$1
-  sucess_msg="$(date +%H:%M:%S) - $nome cadastrado"
+  sucess_msg="$(date +%H:%M:%S) - pet $nome cadastrado"
   
   user_id=${message_chat_id[$id]}  
   user_log=${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}
@@ -44,7 +44,7 @@ pet.nome() {
 pet.animal() {
   local animal sucess_msg acao
   animal=$1
-  sucess_msg="$(date +%H:%M:%S) - $animal cadastrado"
+  sucess_msg="$(date +%H:%M:%S) - espécie $animal cadastrado"
   
   user_id=${message_chat_id[$id]}  
   user_log=${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}
@@ -70,7 +70,7 @@ pet.animal() {
 pet.dono() {
   local dono sucess_msg acao
   dono=$1
-  sucess_msg="$(date +%H:%M:%S) - $dono cadastrado"
+  sucess_msg="$(date +%H:%M:%S) - dono $dono cadastrado"
   
   user_id=${message_chat_id[$id]}  
   user_log=${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}
