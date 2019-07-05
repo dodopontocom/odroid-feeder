@@ -65,7 +65,7 @@ pet.animal() {
   message="Cadastro realizado com sucesso"
   ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})"
   
-  message="O comando para me chamar é \/$(cat $pets_info | grep ^nome | cut -d':' -f2 | cut -d' ' -f1 | tr '[:upper:]' '[:lower:]')"
+  message="O comando para me chamar é /$(cat $pets_info | grep ^nome | tail -1 | cut -d':' -f2 | cut -d' ' -f1 | tr '[:upper:]' '[:lower:]')"
   ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})"
   
 }
