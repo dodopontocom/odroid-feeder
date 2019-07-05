@@ -35,7 +35,7 @@ pet.nome() {
 }
 
 pet.animal() {
-  local nome sucess_msg
+  local animal sucess_msg
   animal=$1
   sucess_msg="$(date +%H:%M:%S) - $animal cadastrado"
   
