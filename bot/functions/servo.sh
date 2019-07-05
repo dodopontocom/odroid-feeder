@@ -1,7 +1,7 @@
 #!/bin/bash
 BASEDIR=$(dirname $0)
 
-source ${BASEDIR}/selfie.sh
+source ${BASEDIR}/functions/selfie.sh
 
 servo.food () {
 	local btn_type
