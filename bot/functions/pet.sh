@@ -4,17 +4,17 @@ BASEDIR=$(dirname $0)
 pet.register() {
   local user_log user_id pets_info sucess_msg message
   
-  sucess_msg="$(date +%H:%M:%S) - pet cadastrado com sucesso"
+  sucess_msg="$(date +%H:%M:%S) - iniciando cadastro do pet"
   user_id=${message_chat_id[$id]}  
   user_log=${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}
-  pets_info=${user_log}/pets_info.txt
   
   if [[ ! -d $user_log ]]; then					
     mkdir -p $user_log
   fi
+  
   message="Qual o nome do seu pet?"
   ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})" \
-        --parse_mode markdown
+  
   message="Nome:"
   ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})" \
         --reply_markup "$(ShellBot.ForceReply)"
@@ -30,16 +30,19 @@ pet.nome() {
   user_log=${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}
   pets_info=${user_log}/pets_info.txt
   
-  echo "$sucess_msg" >> $user_log/$(date +%Y%m%d).log
-  echo "nome:$nome" >> $pets_info
+  message="É um dog ou um gato?"
+  ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})" \
   
   message="Animal:"
   ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})" \
         --reply_markup "$(ShellBot.ForceReply)"
+  
+  echo "$sucess_msg" >> $user_log/$(date +%Y%m%d).log
+  echo "nome:$nome" >> $pets_info
 }
 
 pet.animal() {
-  local animal sucess_msg
+  local animal sucess_msg acao
   animal=$1
   sucess_msg="$(date +%H:%M:%S) - $animal cadastrado"
   
@@ -48,7 +51,15 @@ pet.animal() {
   pets_info=${user_log}/pets_info.txt
   
   echo "$sucess_msg" >> $user_log/$(date +%Y%m%d).log
+  
+  sucess_msg="$(date +%H:%M:%S) - cadastro realizado com sucesso"
+  echo "$sucess_msg" >> $user_log/$(date +%Y%m%d).log
+  
   echo "animal:$animal" >> $pets_info
-
+  if [[ $animal =~ ([Dd]og|[Cc]achorro|[Cc]adela|[Cc]achorra) ]]; then
+    echo "acao:auau" >> $pets_info
+  elif [[ $animal =~ ([Gg]ato|[Gg]ata|[Cc]at|[Cc]achorra) ]]; then
+    echo "acao:miaowW" >> $pets_info
+  fi
 }
 
