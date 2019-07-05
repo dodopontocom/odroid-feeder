@@ -2,7 +2,7 @@
 #
 BASEDIR=$(dirname $0)
 
-pets_name=$(tail -1 ${BASEDIR}/.pets_name)
+pets_name=$(tail -1 ${BASEDIR}/.pets_name | cut -d':' -f1)
 
 start.sendGreetings() {
   local message txt name
