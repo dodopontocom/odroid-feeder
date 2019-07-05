@@ -30,7 +30,7 @@ pet.nome() {
   user_log=${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}
   pets_info=${user_log}/pets_info.txt
   
-  message="É um dog ou um gato?"
+  message="É um dog um gato ou outro animal?"
   ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})"
   
   message="Animal:"
@@ -52,9 +52,9 @@ pet.animal() {
     
   echo "animal:$animal" >> $pets_info
   if [[ $animal =~ ([Dd]og|[Cc]achorro|[Cc]adela|[Cc]achorra) ]]; then
-    echo "acao:auau" >> $pets_info
+    echo "acao:🐶 auau" >> $pets_info
   elif [[ $animal =~ ([Gg]ato|[Gg]ata|[Cc]at|[Cc]achorra) ]]; then
-    echo "acao:miaowW" >> $pets_info
+    echo "acao:😾 miaowW" >> $pets_info
   fi
   
   message="Como gosta de ser chamado pelo seu pet?"
