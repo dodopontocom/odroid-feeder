@@ -11,6 +11,7 @@ source ${BASEDIR}/functions/selfie.sh
 source ${BASEDIR}/functions/start.sh
 
 logs=${BASEDIR}/../logs
+id_check=${BASEDIR}/.id_registrados
 
 # Token do bot
 if [[ ! -z $1 ]]; then
@@ -25,7 +26,7 @@ ShellBot.init --token "$bot_token" --monitor --flush
 ShellBot.username
 
 servo.function () {
-	if [[ $(cat ${BASEDIR}/.allowed_id | grep "${callback_query_message_chat_id[$id]}") ]]; then
+	if [[ $(cat $id_check | grep "${callback_query_message_chat_id[$id]}") ]]; then
 		ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
 					--text "Alimentando seu pet..."
 		servo.sh
@@ -38,7 +39,7 @@ servo.function () {
 	return 0
 }
 servo2.function () {
-	if [[ $(cat ${BASEDIR}/.allowed_id | grep "${callback_query_message_chat_id[$id]}") ]]; then
+	if [[ $(cat $id_check | grep "${callback_query_message_chat_id[$id]}") ]]; then
 		ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
 					--text "Colocando água..."
 		servo2.sh
@@ -86,7 +87,7 @@ do
 			"/hello")	# bot comando
 				# Envia a mensagem anexando o teclado "$keyboard1"
 				if [[ ! -d ${logs}/${message_chat_id[$id]}_${message_from_first_name} ]]; then
-					mkdir ${logs}/${message_chat_id[$id]}_${message_from_first_name}
+					mkdir -p ${logs}/${message_chat_id[$id]}_${message_from_first_name}
 				fi	
 				ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "*Pois não ${message_from_first_name} ...*" \
 							--reply_markup "$keyboard1" \																		--parse_mode markdown
