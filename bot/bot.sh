@@ -89,7 +89,7 @@ do
 				feed.init "${keyboard1}"
 			;;
 			"/start")
-				if [[ -z $pets_name ]]; then
+				if [[ ! -f ${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}/pets_info.txt ]]; then
 					pet.register
 				else
 					start.sendGreetings "${message_from_first_name}"
