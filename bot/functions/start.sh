@@ -1,5 +1,7 @@
 #!/bin/bash
 #
+BASEDIR=$(dirname $0)
+
 start.sendGreetings() {
   local message txt
   txt=${BASEDIR}/texts/start.txt
