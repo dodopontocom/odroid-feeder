@@ -84,13 +84,15 @@ do
 		ShellBot.watchHandle --callback_data ${callback_query_data[$id]}
 		# Verifica se a mensagem enviada pelo usuário é um comando válido.
 		case ${message_text[$id]} in
-			"/hello")	# bot comando
-				# Envia a mensagem anexando o teclado "$keyboard1"
+			"/hello")
 				if [[ ! -d ${logs}/${message_chat_id[$id]}_${message_from_first_name} ]]; then
 					mkdir -p ${logs}/${message_chat_id[$id]}_${message_from_first_name}
 				fi	
 				ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "*Pois não ${message_from_first_name} ...*" \
 							--reply_markup "$keyboard1" \																		--parse_mode markdown
+			;;
+			"/start")
+				start.sendGreetings
 			;;
 		esac
 	) & # Utilize a thread se deseja que o bot responda a várias requisições simultâneas.
