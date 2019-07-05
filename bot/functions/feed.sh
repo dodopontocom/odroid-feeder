@@ -9,9 +9,10 @@ feed.init() {
   pets_info=${user_log}/pets_info.txt
   pets_name=$(cat $pets_info | grep ^nome | tail -1 | cut -d':' -f2 | cut -d' ' -f1 | tr '[:upper:]' '[:lower:]')
   pets_action="$(cat $pets_info | grep ^acao | tail -1 | cut -d':' -f2)"
+  pets_dono="$(cat $pets_info | grep ^dono | tail -1 | cut -d':' -f2)"
   
   echo "$(date +%H:%M:%S) - comando /${pets_name} executado" >> $user_log/$(date +%Y%m%d).log
   
-  ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "*${pets_action} ... Estou com fome ${message_from_first_name} ...*" \
+  ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "*${pets_action} ... Estou com fome ${pets_dono} ...*" \
         --reply_markup "$keyboard1" --parse_mode markdown
 }
