@@ -11,6 +11,7 @@ source ${BASEDIR}/functions/selfie.sh
 source ${BASEDIR}/functions/start.sh
 source ${BASEDIR}/functions/feed.sh
 source ${BASEDIR}/functions/pet.sh
+source ${BASEDIR}/functions/servo.sh
 
 id_check=${BASEDIR}/.id_registrados
 
