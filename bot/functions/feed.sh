@@ -6,7 +6,7 @@ feed.init() {
   local user_log keyboard1
   keyboard1=$1
   
-  user_log=${BASEDIR}/${logs}/${message_chat_id[$id]}_${message_from_first_name}
+  user_log=${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}
   
   if [[ ! -d $user_log ]]; then					
     mkdir -p $user_log
