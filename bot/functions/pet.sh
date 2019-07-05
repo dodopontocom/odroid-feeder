@@ -22,7 +22,7 @@ pet.register() {
   echo $sucess_msg >> $user_log/$(date +%Y%m%d).log
 }
 pet.nome() {
-  local nome sucess_msg
+  local nome sucess_msg message
   nome=$1
   sucess_msg="$(date +%H:%M:%S) - $nome cadastrado"
   
@@ -32,10 +32,14 @@ pet.nome() {
   
   echo "$sucess_msg" >> $user_log/$(date +%Y%m%d).log
   echo "nome:$nome" >> $pets_info
+  
+  message="Animal:"
+  ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})" \
+        --reply_markup "$(ShellBot.ForceReply)"
 }
 
 pet.animal() {
-  local animal sucess_msg message
+  local animal sucess_msg
   animal=$1
   sucess_msg="$(date +%H:%M:%S) - $animal cadastrado"
   
@@ -45,10 +49,6 @@ pet.animal() {
   
   echo "$sucess_msg" >> $user_log/$(date +%Y%m%d).log
   echo "animal:$animal" >> $pets_info
-  
-  message="Animal:"
-  ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "$(echo -e ${message})" \
-        --reply_markup "$(ShellBot.ForceReply)"
 
 }
 
