@@ -7,7 +7,7 @@ start.sendGreetings() {
   txt=${BASEDIR}/texts/start.txt
   message="*olá *"
   if [[ ! -z $callback_query_from_first_name ]]; then
-    message+=${message_from_first_name}
+    message+=${callback_query_from_first_name}
   else
     message+=${callback_query_from_id}
   fi
