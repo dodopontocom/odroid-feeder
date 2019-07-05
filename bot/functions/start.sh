@@ -2,7 +2,13 @@
 #
 BASEDIR=$(dirname $0)
 
-pets_name=$(tail -1 ${BASEDIR}/.pets_name | cut -d':' -f1)
+user_id=${message_chat_id[$id]}  
+user_log=${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}
+pets_info=${user_log}/pets_info.txt
+
+#pets_name=$(tail -1 ${BASEDIR}/.pets_name | cut -d':' -f1)
+pets_name=$(cat $pets_info | grep ^nome | tail -1 | cut -d':' -f2 | cut -d' ' -f1 | tr '[:upper:]' '[:lower:]')
+
 
 start.sendGreetings() {
   local message txt name
