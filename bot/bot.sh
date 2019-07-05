@@ -92,7 +92,7 @@ do
 							--reply_markup "$keyboard1" \																		--parse_mode markdown
 			;;
 			"/start")
-				start.sendGreetings
+				start.sendGreetings "${message_from_first_name}"
 			;;
 		esac
 	) & # Utilize a thread se deseja que o bot responda a várias requisições simultâneas.
