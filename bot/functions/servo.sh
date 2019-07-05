@@ -33,7 +33,7 @@ servo.water () {
 	btn_type=$callback_query_data
 	
 	ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
-					--text "Alimentando seu pet..."
+					--text "Colocando água para seu pet..."
 	if [[ $btn_type == "btn_water1" ]]; then
 		echo water1
 		#500ml
