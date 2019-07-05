@@ -87,8 +87,10 @@ do
 		# Verifica se a mensagem enviada pelo usuário é um comando válido.
 		case ${message_text[$id]} in
 			"/${pets_name}")
-				if [[ ! -d ${logs}/${message_chat_id[$id]}_${message_from_first_name} ]]; then
-					mkdir -p ${logs}/${message_chat_id[$id]}_${message_from_first_name}
+				user_log=${logs}/${message_chat_id[$id]}_${message_from_first_name}
+				if [[ ! -d $user_log ]]; then					
+					mkdir -p $user_log
+					echo "$(date +%H:%M:%S) - comando /${pets_name} envocado" >> $user_log/$(date +%Y%m%d).log
 				fi	
 				ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "*${pets_action} ... Estou com fome ${message_from_first_name} ...*" \
 							--reply_markup "$keyboard1" \																		--parse_mode markdown
