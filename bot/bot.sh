@@ -84,6 +84,9 @@ do
 	(
 		ShellBot.watchHandle --callback_data ${callback_query_data[$id]}
 		pets_info=${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}/pets_info.txt
+		if [[ -f $pets_info ]]; then
+			pets_name=$(cat $pets_info | grep ^nome | tail -1 | cut -d':' -f2 | cut -d' ' -f1 | tr '[:upper:]' '[:lower:]')
+		fi
 		# Verifica se a mensagem enviada pelo usuário é um comando válido.
 		case ${message_text[$id]} in
 			"/${pets_name}")
