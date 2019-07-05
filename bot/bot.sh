@@ -83,13 +83,14 @@ do
 	# Inicio thread
 	(
 		ShellBot.watchHandle --callback_data ${callback_query_data[$id]}
+		pets_info=${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}/pets_info.txt
 		# Verifica se a mensagem enviada pelo usuário é um comando válido.
 		case ${message_text[$id]} in
 			"/${pets_name}")
 				feed.init "${keyboard1}"
 			;;
 			"/start")
-				if [[ ! -f ${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}/pets_info.txt ]]; then
+				if [[ ! -f $pets_info ]]; then
 					pet.register
 				else
 					start.sendGreetings "${message_from_first_name}"
