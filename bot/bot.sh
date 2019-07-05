@@ -10,11 +10,9 @@ source ${BASEDIR}/ShellBot.sh
 source ${BASEDIR}/functions/selfie.sh
 source ${BASEDIR}/functions/start.sh
 source ${BASEDIR}/functions/feed.sh
+source ${BASEDIR}/functions/pet.sh
 
-logs=${BASEDIR}/../logs
 id_check=${BASEDIR}/.id_registrados
-pets_name=$(tail -1 ${BASEDIR}/.pets_name | cut -d':' -f1)
-pets_action=$(tail -1 ${BASEDIR}/.pets_name | cut -d':' -f2)
 
 # Token do bot
 if [[ ! -z $1 ]]; then
@@ -91,7 +89,11 @@ do
 				feed.init "${keyboard1}"
 			;;
 			"/start")
-				start.sendGreetings "${message_from_first_name}"
+				if [[ -z $pets_name ]]; then
+					pet.register
+				else
+					start.sendGreetings "${message_from_first_name}"
+				fi
 			;;
 		esac
 	) & # Utilize a thread se deseja que o bot responda a várias requisições simultâneas.
