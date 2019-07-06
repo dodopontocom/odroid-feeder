@@ -52,8 +52,8 @@ readonly -A _SHELLBOT_=(
 [email]='shellscriptx@gmail.com'
 [wiki]='https://github.com/shellscriptx/shellbot/wiki'
 [github]='https://github.com/shellscriptx/shellbot'
-#[packages]='curl 7.0, getopt 2.0, jq 1.5'
-[packages]='curl 7.0'
+[packages]='curl 7.0, getopt 2.0, jq 1.5'
+#[packages]='curl 7.0'
 )
 
 # Verifica dependências.

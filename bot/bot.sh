@@ -12,6 +12,7 @@ source ${BASEDIR}/functions/start.sh
 source ${BASEDIR}/functions/feed.sh
 source ${BASEDIR}/functions/pet.sh
 source ${BASEDIR}/functions/servo.sh
+source ${BASEDIR}/functions/user.sh
 
 id_check=${BASEDIR}/.id_registrados
 
@@ -27,7 +28,18 @@ ShellBot.init --token "$bot_token" --monitor --flush
 
 ShellBot.username
 
-# Limpa o array que irá receber a estrutura inline_button e suas configurações.
+##############################################################################################
+botao=''
+
+ShellBot.InlineKeyboardButton --button 'botao' --line 1 --text 'SIM' --callback_data 'btn_s'
+ShellBot.InlineKeyboardButton --button 'botao' --line 1 --text 'NAO' --callback_data 'btn_n'
+
+ShellBot.regHandleFunction --function user.add --callback_data btn_s
+ShellBot.regHandleFunction --function user.donot --callback_data btn_n
+
+keyboard_accept="$(ShellBot.InlineKeyboardMarkup -b 'botao')"
+##############################################################################################
+##############################################################################################
 botao1=''
 
 ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text 'Alimentar 250g' --callback_data 'btn_feed1'
@@ -45,6 +57,7 @@ ShellBot.regHandleFunction --function selfie.shot --callback_data btn_foto
 ShellBot.regHandleFunction --function start.sendGreetings --callback_data btn_ajuda
 
 keyboard1="$(ShellBot.InlineKeyboardMarkup -b 'botao1')"
+##############################################################################################
 
 while :
 do
@@ -57,23 +70,40 @@ do
 	# Inicio thread
 	(
 		ShellBot.watchHandle --callback_data ${callback_query_data[$id]}
-		pets_info=${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}/pets_info.txt
-		if [[ -f $pets_info ]]; then
-			pets_name=$(cat $pets_info | grep ^nome | tail -1 | cut -d':' -f2 | cut -d' ' -f1 | tr '[:upper:]' '[:lower:]')
-		fi
-		# Verifica se a mensagem enviada pelo usuário é um comando válido.
-		case ${message_text[$id]} in
-			"/${pets_name}")
-				feed.init "${keyboard1}"
-			;;
-			"/start")
-				if [[ ! -f $pets_info ]]; then
-					pet.register
+
+		if [[ ${message_entities_type[$id]} == bot_command ]]; then
+			if [[ $(cat $id_check | grep ${message_from_id}) ]]; then
+				pets_info=${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}/pets_info.txt
+				
+				if [[ -f $pets_info ]]; then
+					pets_name=$(cat $pets_info | grep ^nome | tail -1 | cut -d':' -f2 | cut -d' ' -f1 | tr '[:upper:]' '[:lower:]')
+					# Verifica se a mensagem enviada pelo usuário é um comando válido.
+					case ${message_text[$id]} in
+						"/${pets_name}")
+							feed.init "${keyboard1}"
+						;;
+						"/start")
+							start.sendGreetings "${message_from_first_name}"
+						;;
+					esac
 				else
-					start.sendGreetings "${message_from_first_name}"
+					case ${message_text[$id]} in
+						"/start")
+							pet.register
+						;;
+					esac
 				fi
-			;;
-		esac
+			else
+				case ${message_text[$id]} in
+					"/cadastro")
+						user.register "${message_from_id}" "${message_from_first_name}"
+					;;
+					"/start")
+						start.sendGreetings "${message_from_first_name}"
+					;;
+				esac
+			fi
+		fi
 		if [[ ${message_reply_to_message_message_id[$id]} ]]; then
 			case ${message_reply_to_message_text[$id]} in
 				'Nome:')

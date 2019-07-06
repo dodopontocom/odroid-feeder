@@ -55,6 +55,8 @@ pet.animal() {
     echo "acao:🐶 auau" >> $pets_info
   elif [[ $animal =~ ([Gg]ato|[Gg]ata|[Cc]at|[Cc]achorra) ]]; then
     echo "acao:😾 miaowW" >> $pets_info
+  else
+    echo "acao:😾 🐶" >> $pets_info
   fi
   
   message="Como gosta de ser chamado pelo seu pet?"
