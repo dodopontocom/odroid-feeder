@@ -13,8 +13,10 @@ source ${BASEDIR}/functions/feed.sh
 source ${BASEDIR}/functions/pet.sh
 source ${BASEDIR}/functions/servo.sh
 source ${BASEDIR}/functions/user.sh
+source ${BASEDIR}/functions/support.sh
 
 id_check=${BASEDIR}/.id_registrados
+admins_id=${BASEDIR}/.admins_id
 
 # Token do bot
 if [[ ! -z $1 ]]; then
@@ -101,6 +103,12 @@ do
 					"/start")
 						start.sendGreetings "${message_from_first_name}"
 					;;
+				esac
+			fi
+			if [[ $(cat $admins_id | grep ${message_from_id}) ]]; then
+				case ${message_text[$id]} in
+					"/reset")
+						support.reset
 				esac
 			fi
 		fi
