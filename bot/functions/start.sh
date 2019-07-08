@@ -3,7 +3,7 @@
 BASEDIR=$(dirname $0)
 
 start.sendGreetings() {
-  loca1l message txt name user_id user_log pets_info pets_name registred_id
+  local message txt name user_id user_log pets_info pets_name registred_id
   name=$1
   txt=${BASEDIR}/texts/start.txt
   registred_id=${BASEDIR}/.id_registrados
