@@ -26,9 +26,7 @@ pet.register() {
 pet.nome() {
   local bnome nome sucess_msg message
   bnome=$1
-  echo $bnome
   nome=$(remove.acento "$bnome")
-  echo $nome
   sucess_msg="$(date +%H:%M:%S) - pet $nome cadastrado"
   
   user_id=${message_chat_id[$id]}  
