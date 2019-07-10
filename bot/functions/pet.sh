@@ -1,7 +1,7 @@
 #!/bin/bash
 BASEDIR=$(dirname $0)
 
-source ${BASEDIR}/remove_acentos.sh
+source ${BASEDIR}/functions/remove_acentos.sh
 
 pet.register() {
   local user_log user_id pets_info sucess_msg message
@@ -26,7 +26,9 @@ pet.register() {
 pet.nome() {
   local bnome nome sucess_msg message
   bnome=$1
+  echo $bnome
   nome=$(remove.acento "$bnome")
+  echo $nome
   sucess_msg="$(date +%H:%M:%S) - pet $nome cadastrado"
   
   user_id=${message_chat_id[$id]}  
