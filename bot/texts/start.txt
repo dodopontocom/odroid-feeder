@@ -1,0 +1,8 @@
+Eu sou o 🤖 `BOT do seu PET`.\n
+*Posso gerenciar a alimentação dos seus Pets.*\n
+Veja as opções 👇 👌\n\n
+*->* `Alimentar 250g de Ração 🍔` \n\n
+*->* `Alimentar 150g de Ração 🍔` \n\n
+*->* `Despejar 500ml de água ☕` \n\n
+*->* `Despejar 250ml de água ☕` \n\n
+*->* `Tirar foto para verificar se tudo está ok 🙏` \n\n
