@@ -13,8 +13,11 @@ source ${BASEDIR}/functions/feed.sh
 source ${BASEDIR}/functions/pet.sh
 source ${BASEDIR}/functions/servo.sh
 source ${BASEDIR}/functions/user.sh
+source ${BASEDIR}/functions/support.sh
+source ${BASEDIR}/functions/cron.sh
 
 id_check=${BASEDIR}/.id_registrados
+admins_id=${BASEDIR}/.admins_id
 
 # Token do bot
 if [[ ! -z $1 ]]; then
@@ -28,7 +31,7 @@ ShellBot.init --token "$bot_token" --monitor --flush
 
 ShellBot.username
 
-##############################################################################################
+############Botao para admins aceitarem novos cadastros#######################################
 botao=''
 
 ShellBot.InlineKeyboardButton --button 'botao' --line 1 --text 'SIM' --callback_data 'btn_s'
@@ -39,7 +42,8 @@ ShellBot.regHandleFunction --function user.donot --callback_data btn_n
 
 keyboard_accept="$(ShellBot.InlineKeyboardMarkup -b 'botao')"
 ##############################################################################################
-##############################################################################################
+
+#############Botao para alimentar pet#########################################################
 botao1=''
 
 ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text 'Alimentar 250g' --callback_data 'btn_feed1'
@@ -74,16 +78,20 @@ do
 		if [[ ${message_entities_type[$id]} == bot_command ]]; then
 			if [[ $(cat $id_check | grep ${message_from_id}) ]]; then
 				pets_info=${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}/pets_info.txt
-				
 				if [[ -f $pets_info ]]; then
 					pets_name=$(cat $pets_info | grep ^nome | tail -1 | cut -d':' -f2 | cut -d' ' -f1 | tr '[:upper:]' '[:lower:]')
-					# Verifica se a mensagem enviada pelo usuário é um comando válido.
 					case ${message_text[$id]} in
 						"/${pets_name}")
 							feed.init "${keyboard1}"
 						;;
 						"/start")
 							start.sendGreetings "${message_from_first_name}"
+						;;
+						"/agendar")
+							cron.agendar "${message_from_id}" "${message_from_first_name}"
+						;;
+						"/cancelar")
+							cron.cancel "${message_from_id}" "${message_from_first_name}"
 						;;
 					esac
 				else
@@ -103,6 +111,12 @@ do
 					;;
 				esac
 			fi
+			if [[ $(cat $admins_id | grep ${message_from_id}) ]]; then
+				case ${message_text[$id]} in
+					"/reset")
+						support.reset
+				esac
+			fi
 		fi
 		if [[ ${message_reply_to_message_message_id[$id]} ]]; then
 			case ${message_reply_to_message_text[$id]} in
@@ -114,6 +128,9 @@ do
 				;;
 				'Dono:')
 					pet.dono "${message_text[$id]}"
+				;;
+				'Hora:')
+					cron.create "${message_from_id}" "${message_from_first_name}" "${message_text[$id]}"
 				;;
 			esac
 		fi
