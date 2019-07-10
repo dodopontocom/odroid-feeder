@@ -1,8 +1,12 @@
 import RPi.GPIO as GPIO
 import time
+import system
 
-control = [5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,11,12,13,14]
+#control = [5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,11,12,13,14]
 control = [5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10]
+
+#tempo de deixar a paleta aberta para despejar mais ração
+tempo_abertura = sys.argv[1]
 
 servo = 22
 print ("servo: %s" % servo)
@@ -27,8 +31,7 @@ for x in range(10):
  p.ChangeDutyCycle(control[x])
  time.sleep(0.03)
 
-#time.sleep(0.1)
-time.sleep(1.6)
+time.sleep(tempo_abertura)
            
 for x in range(9,0,-1):
  p.ChangeDutyCycle(control[x])
