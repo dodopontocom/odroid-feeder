@@ -53,10 +53,10 @@ ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text 'Água ~250ml' -
 ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text 'Verificar Potes 📷' --callback_data 'btn_foto'
 ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text 'Ajuda ⁉️' --callback_data 'btn_ajuda'
 
-ShellBot.regHandleFunction --function servo.trigger --callback_data btn_feed1
-ShellBot.regHandleFunction --function servo.trigger --callback_data btn_feed2
-ShellBot.regHandleFunction --function water.trigger --callback_data btn_water1
-ShellBot.regHandleFunction --function water.trigger --callback_data btn_water2
+ShellBot.regHandleFunction --function servo.food --callback_data btn_feed1
+ShellBot.regHandleFunction --function servo.food --callback_data btn_feed2
+ShellBot.regHandleFunction --function servo.water --callback_data btn_water1
+ShellBot.regHandleFunction --function servo.water --callback_data btn_water2
 ShellBot.regHandleFunction --function selfie.shot --callback_data btn_foto
 ShellBot.regHandleFunction --function start.sendGreetings --callback_data btn_ajuda
 
