@@ -12,8 +12,8 @@ selfie.shot() {
   error_message+="...estou transmitindo ao vivo!"
   
   user_name=${message_from_first_name[$id]}
-  if [[ ${callback_query_message_from_first_name[$id]} ]]; then
-    user_name=${callback_query_message_from_first_name[$id]}
+  if [[ ${callback_query_from_first_name[$id]} ]]; then
+    user_name=${callback_query_from_first_name[$id]}
   fi
   user_id=${message_chat_id[$id]}  
   if [[ ${callback_query_message_chat_id[$id]} ]]; then
