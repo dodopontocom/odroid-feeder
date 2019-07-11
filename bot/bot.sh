@@ -46,10 +46,10 @@ keyboard_accept="$(ShellBot.InlineKeyboardMarkup -b 'botao')"
 #############Botao para alimentar pet#########################################################
 botao1=''
 
-ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text 'Alimentar 250g' --callback_data 'btn_feed1'
-ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text 'Água 500ml' --callback_data 'btn_water1'
-ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text 'Alimentar 150g' --callback_data 'btn_feed2'
-ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text 'Água 250ml' --callback_data 'btn_water2'
+ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text 'Alimentar ~250g' --callback_data 'btn_feed1'
+ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text 'Água ~500ml' --callback_data 'btn_water1'
+ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text 'Alimentar ~150g' --callback_data 'btn_feed2'
+ShellBot.InlineKeyboardButton --button 'botao1' --line 2 --text 'Água ~250ml' --callback_data 'btn_water2'
 ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text 'Verificar Potes 📷' --callback_data 'btn_foto'
 ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text 'Ajuda ⁉️' --callback_data 'btn_ajuda'
 
