@@ -18,7 +18,7 @@ selfie.shot() {
   if [[ ${callback_query_message_chat_id[$id]} ]]; then
     user_id=${callback_query_message_chat_id[$id]}
   fi
-  user_log=${BASEDIR}/logs/${user_id]}_${user_name}
+  user_log=${BASEDIR}/logs/${user_id}_${user_name}
 
   ShellBot.sendMessage --chat_id $user_id --text "$(echo -e ${message})" --parse_mode markdown
   
