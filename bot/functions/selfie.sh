@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+BASEDIR=$(dirname $0)
 source ${BASEDIR}/functions/random.sh
 
 selfie.shot() {
