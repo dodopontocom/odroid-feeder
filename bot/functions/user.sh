@@ -3,16 +3,17 @@
 BASEDIR=$(dirname $0)
 
 user.register() {
-  local user_name user_id message admins_id tmp_pedido
+  local user_name user_last_name user_id message admins_id tmp_pedido
 
   tmp_pedido="/tmp/pedido_cadastro.log"
   user_id=$1
   echo "$user_id" > $tmp_pedido
   user_name=$2
+  user_last_name=$3
   admins_id=($(cat ${BASEDIR}/.admins_id))
 
   message="*Pedido de cadastro*\n"
-  message+="Nome: ${user_name}\n"
+  message+="Nome: ${user_name} ${user_last_name}\n"
   message+="Id: ${user_id}\n"
   message+="*Aceitar?*"
   
