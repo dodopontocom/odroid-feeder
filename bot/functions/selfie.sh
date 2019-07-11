@@ -28,8 +28,9 @@ selfie.shot() {
     ShellBot.sendPhoto --chat_id $user_id --photo @/tmp/${random_file_name}.jpg
     timestamp=$(date +%H:%M:%S)
 		log_message="${timestamp} - imagem enviada com sucesso"
-    echo $log_message >> $user_log/$(date +%Y%m%d).log
+    echo $log_message >> ${user_log}/$(date +%Y%m%d).log
 		echo $log_message #log into main log
+		echo "---------------------- ${user_log}"
     
   else
     ShellBot.sendMessage --chat_id $user_id --text "$(echo -e ${error_message})" --parse_mode markdown
