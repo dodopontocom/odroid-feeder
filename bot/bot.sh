@@ -11,7 +11,7 @@ source ${BASEDIR}/functions/selfie.sh
 source ${BASEDIR}/functions/start.sh
 source ${BASEDIR}/functions/feed.sh
 source ${BASEDIR}/functions/pet.sh
-source ${BASEDIR}/functions/run-servo.sh
+source ${BASEDIR}/functions/servo.sh
 source ${BASEDIR}/functions/user.sh
 source ${BASEDIR}/functions/support.sh
 source ${BASEDIR}/functions/cron.sh

@@ -2,7 +2,7 @@
 BASEDIR=$(dirname $0)
 
 source ${BASEDIR}/functions/selfie.sh
-source ${BASEDIR}/servo.sh
+source ${BASEDIR}/run-servo.sh
 
 servo.food () {
 	local btn_type

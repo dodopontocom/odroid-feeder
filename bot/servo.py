@@ -1,12 +1,12 @@
 import RPi.GPIO as GPIO
 import time
-import system
+import sys
 
 #control = [5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,11,12,13,14]
 control = [5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10]
 
 #tempo de deixar a paleta aberta para despejar mais ração
-tempo_abertura = sys.argv[1]
+tempo_abertura = float(sys.argv[1])
 
 servo = 22
 print ("servo: %s" % servo)
