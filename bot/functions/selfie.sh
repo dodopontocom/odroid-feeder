@@ -35,7 +35,8 @@ selfie.shot() {
     ShellBot.sendMessage --chat_id $user_id --text "$(echo -e ${error_message})" --parse_mode markdown
     timestamp=$(date +%H:%M:%S)
 		log_message="${timestamp} - erro ao enviar imagem para usuário"
-    echo $log_message >> $user_log/$(date +%Y%m%d).log
+    echo $log_message >> ${user_log}/$(date +%Y%m%d).log
 		echo $log_message #log into main log
+		echo "---------------------- ${user_log}"
   fi   
 }
