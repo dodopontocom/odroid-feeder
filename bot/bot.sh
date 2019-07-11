@@ -104,7 +104,7 @@ do
 			else
 				case ${message_text[$id]} in
 					"/cadastro")
-						user.register "${message_from_id}" "${message_from_first_name}"
+						user.register "${message_from_id}" "${message_from_first_name}" "${message_from_last_name}"
 					;;
 					"/start")
 						start.sendGreetings "${message_from_first_name}"
