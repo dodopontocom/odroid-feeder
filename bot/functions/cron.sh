@@ -71,3 +71,31 @@ cron.cancel() {
   		ShellBot.sendMessage --chat_id $user_id --text "$(echo -e ${message})"
 	fi
 }
+cron.seg() {
+	local cron message user_id user_name
+	echo seg
+}
+cron.ter() {
+	local cron message user_id user_name
+	echo ter
+}
+cron.qua() {
+	local cron message user_id user_name
+	echo qua
+}
+cron.qui() {
+	local cron message user_id user_name
+	echo qui
+}
+cron.sex() {
+	local cron message user_id user_name
+	echo sex
+}
+cron.sab() {
+	local cron message user_id user_name
+	echo sab
+}
+cron.dom() {
+	local cron message user_id user_name
+	echo dom
+}
