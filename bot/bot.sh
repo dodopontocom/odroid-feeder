@@ -70,7 +70,7 @@ ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${dias[1]}" --c
 ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${dias[2]}" --callback_data 'btn_qua'
 ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${dias[3]}" --callback_data 'btn_qui'
 ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${dias[4]}" --callback_data 'btn_sex'
-ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${dias[5}" --callback_data 'btn_sab'
+ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${dias[5]}" --callback_data 'btn_sab'
 ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${dias[6]}" --callback_data 'btn_dom'
 
 ShellBot.regHandleFunction --function cron.seg --callback_data btn_seg
