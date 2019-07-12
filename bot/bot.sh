@@ -101,7 +101,11 @@ do
 	# Inicio thread
 	(
 		ShellBot.watchHandle --callback_data ${callback_query_data[$id]}
-
+		if [[ ${_CHECKED} ]]; then
+			ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${checked} ${dias[0]}" --callback_data 'btn_seg'
+		else
+			ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${unchecked} ${dias[0]}" --callback_data 'btn_seg'
+		fi
 		if [[ ${message_entities_type[$id]} == bot_command ]]; then
 			if [[ $(cat $id_check | grep ${message_from_id}) ]]; then
 				pets_info=${BASEDIR}/logs/${message_chat_id[$id]}_${message_from_first_name}/pets_info.txt
