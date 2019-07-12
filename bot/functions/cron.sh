@@ -104,7 +104,7 @@ cron.seg() {
 
 	keyboard1="$(ShellBot.InlineKeyboardMarkup -b 'botao2')"
 	##############################################################################################
-	ShellBot.sendMessage --chat_id ${message_chat_id[$id]} --text "Escolha os dias da semana:" \
+	ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} --text "Escolha os dias da semana:" \
         --reply_markup "$keyboard1" --parse_mode markdown
 }
 cron.ter() {
