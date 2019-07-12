@@ -64,7 +64,7 @@ keyboard1="$(ShellBot.InlineKeyboardMarkup -b 'botao1')"
 ##############################################################################################
 #############Botoes dias da semana#########################################################
 botao2=''
-dias=('seg','ter','qua','qui','sex','sab','dom',)
+dias=('seg' 'ter' 'qua' 'qui' 'sex' 'sab' 'dom')
 ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${dias[0]}" --callback_data 'btn_seg'
 ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${dias[1]}" --callback_data 'btn_ter'
 ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${dias[2]}" --callback_data 'btn_qua'
