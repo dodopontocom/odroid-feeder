@@ -1,9 +1,5 @@
 #!/bin/bash
 
-BASEDIR=$(dirname $0)
-echo ${BASEDIR}
-source /odroid-feeder/bot/ShellBot.sh
-
 ############Botao para admins aceitarem novos cadastros#######################################
 botao=''
 
