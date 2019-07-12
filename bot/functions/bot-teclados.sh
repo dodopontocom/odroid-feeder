@@ -2,7 +2,7 @@
 
 BASEDIR=$(dirname $0)
 echo ${BASEDIR}
-source ${BASEDIR}/ShellBot.sh
+source ${BASEDIR}/functions/ShellBot.sh
 
 ############Botao para admins aceitarem novos cadastros#######################################
 botao=''
