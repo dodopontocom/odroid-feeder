@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /odroid-feeder/bot/ShellBot.sh
+. /odroid-feeder/bot/ShellBot.sh
 
 ############Botao para admins aceitarem novos cadastros#######################################
 botao=''
