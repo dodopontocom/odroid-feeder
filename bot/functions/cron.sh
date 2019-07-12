@@ -72,8 +72,11 @@ cron.cancel() {
 	fi
 }
 cron.seg() {
-	local cron message user_id user_name
-	echo seg
+	if [[ ${_CHECKED} ]]; then
+		unset _CHECKED
+	else
+		export _CHECKED='1'
+	fi
 }
 cron.ter() {
 	local cron message user_id user_name
