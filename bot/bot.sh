@@ -15,7 +15,7 @@ source ${BASEDIR}/functions/servo.sh
 source ${BASEDIR}/functions/user.sh
 source ${BASEDIR}/functions/support.sh
 source ${BASEDIR}/functions/cron.sh
-source ${BASEDIR}/functions/bot-teclados.sh
+source ${BASEDIR}/bot-teclados.sh
 
 id_check=${BASEDIR}/.id_registrados
 admins_id=${BASEDIR}/.admins_id
