@@ -70,10 +70,10 @@ dias=('seg' 'ter' 'qua' 'qui' 'sex' 'sab' 'dom')
 ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${unchecked} ${dias[0]}" --callback_data 'btn_seg'
 ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${unchecked} ${dias[1]}" --callback_data 'btn_ter'
 ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${unchecked} ${dias[2]}" --callback_data 'btn_qua'
-ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${unchecked} ${dias[3]}" --callback_data 'btn_qui'
-ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${unchecked} ${dias[4]}" --callback_data 'btn_sex'
-ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${unchecked} ${dias[5]}" --callback_data 'btn_sab'
-ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${unchecked} ${dias[6]}" --callback_data 'btn_dom'
+ShellBot.InlineKeyboardButton --button 'botao2' --line 2 --text "${unchecked} ${dias[3]}" --callback_data 'btn_qui'
+ShellBot.InlineKeyboardButton --button 'botao2' --line 2 --text "${unchecked} ${dias[4]}" --callback_data 'btn_sex'
+ShellBot.InlineKeyboardButton --button 'botao2' --line 2 --text "${unchecked} ${dias[5]}" --callback_data 'btn_sab'
+ShellBot.InlineKeyboardButton --button 'botao2' --line 3 --text "${unchecked} ${dias[6]}" --callback_data 'btn_dom'
 
 ShellBot.regHandleFunction --function cron.seg --callback_data btn_seg
 ShellBot.regHandleFunction --function cron.ter --callback_data btn_ter
