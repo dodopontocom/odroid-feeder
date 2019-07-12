@@ -67,7 +67,9 @@ botao2=''
 checked=✅
 unchecked=➖
 dias=('seg' 'ter' 'qua' 'qui' 'sex' 'sab' 'dom')
-ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${unchecked} ${dias[0]}" --callback_data 'btn_seg'
+[[ ${_CHECKED} ]] && \
+	ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${checked} ${dias[0]}" --callback_data 'btn_seg' || \
+	ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${unchecked} ${dias[0]}" --callback_data 'btn_seg'
 ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${unchecked} ${dias[1]}" --callback_data 'btn_ter'
 ShellBot.InlineKeyboardButton --button 'botao2' --line 1 --text "${unchecked} ${dias[2]}" --callback_data 'btn_qua'
 ShellBot.InlineKeyboardButton --button 'botao2' --line 2 --text "${unchecked} ${dias[3]}" --callback_data 'btn_qui'
