@@ -18,6 +18,7 @@ source ${BASEDIR}/functions/cron.sh
 
 id_check=${BASEDIR}/.id_registrados
 admins_id=${BASEDIR}/.admins_id
+logs=${BASEDIR}/logs
 
 # Token do bot
 if [[ ! -z $1 ]]; then
@@ -67,6 +68,18 @@ while :
 do
 	# Obtem as atualizações
 	ShellBot.getUpdates --limit 100 --offset $(ShellBot.OffsetNext) --timeout 30
+	
+	################# check if any user needs to be alerted about lunch time
+		#cron=${BASEDIR}/logs/${user_id}_${user_name}/cron.tab
+		for file in $(find $logs -name "cron.tab"); do
+			hora=$(cat $file)
+			if [[ "$(date +%H:%M)" = "${hora}" ]]; then
+				sleep 29
+				servo.food $file
+				servo.water $file
+			fi
+		done
+		########################################################################
 	
 	# Lista o índice das atualizações
 	for id in $(ShellBot.ListUpdates)

@@ -27,13 +27,13 @@ p=GPIO.PWM(servo,50)# 50hz frequency
 
 p.start(2.5)# starting duty cycle ( it set the servo to 0 degree )
 
-for x in range(10): 
+for x in range(5): 
  p.ChangeDutyCycle(control[x])
  time.sleep(0.03)
 
 time.sleep(tempo_abertura)
            
-for x in range(9,0,-1):
+for x in range(4,0,-1):
  p.ChangeDutyCycle(control[x])
  time.sleep(0.03)
 

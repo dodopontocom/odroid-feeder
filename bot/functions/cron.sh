@@ -9,7 +9,7 @@ cron.agendar() {
   cron=${BASEDIR}/logs/${user_id}_${user_name}/cron.tab
   
   if [[ $(ls $cron) ]]; then
-  	message="Diga um novo horario para alimentar:"
+  	message="Diga um novo horário para alimentar:"
   	ShellBot.sendMessage --chat_id $user_id --text "$(echo -e ${message})"
 	message="Hora:"
 	ShellBot.sendMessage --chat_id $user_id --text "$(echo -e ${message})" \
@@ -29,18 +29,18 @@ cron.create() {
 	user_id=$1
   	user_name=$2
 	hora=$3
-        re='^[:0-9]+$'
+    re='^[:0-9]+$'
 
   	cron=${BASEDIR}/logs/${user_id}_${user_name}/cron.tab
   
   if [[ $hora =~ $re ]]; then
-  	message="Adicionando horario ao sistema de agenda"
+  	message="Adicionando horário ao sistema de agenda"
   	ShellBot.sendMessage --chat_id $user_id --text "$(echo -e ${message})"
 	echo "$hora" > $cron
 	if [[ $? -eq 0 ]]; then
   		message="Horario atualizado"
   		ShellBot.sendMessage --chat_id $user_id --text "$(echo -e ${message})"
-		message="O bot ira alimentar todos os dias as $(cat $cron)"
+		message="O bot irá alimentar todos os dias às $(cat $cron)"
   		ShellBot.sendMessage --chat_id $user_id --text "$(echo -e ${message})"
   		message="Para cancelar pressione aqui /cancelar"
   		ShellBot.sendMessage --chat_id $user_id --text "$(echo -e ${message})"
@@ -50,7 +50,7 @@ cron.create() {
 	fi
 
   else
-	message="Horario nao e valido (exemplo de horario valido - 12:15)\n"
+	message="Horário não é válido (exemplo de horário válido - 12:15)\n"
 	message+="tente novamente /agendar"
   	ShellBot.sendMessage --chat_id $user_id --text "$(echo -e ${message})"
   fi
@@ -65,9 +65,11 @@ cron.cancel() {
 	echo "" > $cron
 	if [[ $? -eq 0 ]]; then
   		message="Agendamentos Cancelados"
+		  message+="Para Agendar, pressione aqui /agendar"
   		ShellBot.sendMessage --chat_id $user_id --text "$(echo -e ${message})"
 	else
-		message="Nao ha agendamendos ativos"
+		message="Não há agendamendos ativos"
+		message+="Para Agendar, pressione aqui /agendar"
   		ShellBot.sendMessage --chat_id $user_id --text "$(echo -e ${message})"
 	fi
 }
