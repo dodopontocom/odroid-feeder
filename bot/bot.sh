@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #sleep para funcionar melhor no startup do sistema
-#sleep 10
+sleep 10
 
 # Importando API
 BASEDIR=$(dirname $0)
