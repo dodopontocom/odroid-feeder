@@ -29,8 +29,9 @@ fi
 
 # Inicializando o bot
 ShellBot.init --token "$bot_token" --monitor --flush
-
-ShellBot.username
+my_id=11504381
+message="Fui reiniciado"
+ShellBot.sendMessage --chat_id $my_id --text "$(echo -e ${message})"
 
 ############Botao para admins aceitarem novos cadastros#######################################
 botao=''
